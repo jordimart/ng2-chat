@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -9,7 +10,7 @@ export class ChatComponent implements OnInit {
 
   mensaje:string= "";
 
-  constructor() { }
+  constructor( public _cs:ChatService ) { }
 
   ngOnInit() {
   }
@@ -18,8 +19,10 @@ export class ChatComponent implements OnInit {
     if(this.mensaje.length == 0){
       return;
     }
+    this._cs.agregarMensaje( this.mensaje )
+          .then( ()=>console.log("hecho"))
+          .catch( (error)=>console.error(error))
 
-    console.log(this.mensaje);
   }
 
 }
