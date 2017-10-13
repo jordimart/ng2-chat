@@ -10,6 +10,6 @@ import { Observable } from 'rxjs/Observable';
 export class AppComponent {
   chats: Observable<any[]>;
   constructor(af: AngularFirestore) {
-     this.chats = af.collection('chats').valueChanges();
+     this.chats = af.collection('/chats').valueChanges();
   }
 }
