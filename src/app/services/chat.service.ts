@@ -5,24 +5,34 @@ import { Mensaje } from '../interfaces/mensaje.interface';
 
 @Injectable()
 export class ChatService {
-  private itemsCollection: AngularFirestoreCollection<Mensaje>;
-  chats: Observable<Mensaje[]>;
-  constructor(private af: AngularFirestore) {
-    this.itemsCollection = af.collection<Mensaje>('/chats');
-    this.chats = this.itemsCollection.valueChanges();
+
+  private itemsCollection: AngularFirestoreCollection<any>;
+  public chats: any[] = [];
+
+  constructor(private afs: AngularFirestore) {
+    // this.itemsCollection = af.collection<Mensaje>('chats');
+    // this.chats = this.itemsCollection.valueChanges();
+
+    // this.itemsCollection = this.af.collection<Mensaje>('chats');
+    // this.chats = this.itemsCollection.snapshotChanges(['added', 'removed']);
+    // console.log(this.chats)
   }
 
-  cargarMensajes(){
-
+  cargarMensajes() {
+    this.itemsCollection = this.afs.collection<any>('/chats');
+    return this.itemsCollection.valueChanges();
+    // this.itemsCollection = this.af.collection<Mensaje>('/chats');
+    // console.log(this.itemsCollection.valueChanges())
+    // return this.chats = this.itemsCollection.valueChanges();
   }
 
-  agregarMensaje( texto:string ){
-      let mensaje:Mensaje = {
-        nombre:"Juan Carlos",
-        mensaje:texto
-      }
-
-      return this.itemsCollection.add( mensaje );
+  agregarMensaje(texto: string) {
+    // let mensaje:Mensaje = {
+    //   nombre:"Juan Carlos",
+    //   mensaje:texto
+    // }
+    //
+    // return this.itemsCollection.add( mensaje );
   }
 
 }

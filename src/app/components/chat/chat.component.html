@@ -15,6 +15,45 @@
       Mensaje de pruebas rosana
     </p>
   </div>
+  <div class="text-left">
+    <span class="badge badge-success">Rosana</span>
+    <p>
+      Mensaje de pruebas rosana
+    </p>
+  </div>
+  <div class="text-left">
+    <span class="badge badge-success">Rosana</span>
+    <p>
+      Mensaje de pruebas rosana
+    </p>
+  </div>
+  <div class="text-left">
+    <span class="badge badge-success">Rosana</span>
+    <p>
+      Mensaje de pruebas rosana
+    </p>
+  </div>
+  <div class="text-left">
+    <span class="badge badge-success">Rosana</span>
+    <p>
+      Mensaje de pruebas rosana
+    </p>
+  </div>
+  <div class="text-left">
+    <span class="badge badge-success">Rosana</span>
+    <p>
+      Mensaje de pruebas rosana
+    </p>
+  </div>
+
 </div>
 
-<input [(ngModel)]="mensaje" name="mensaje" (keyup.enter)="enviar()" class="form-control" Placeholder="mensaje" />
+
+<ul>
+  <li class="text" *ngFor="let chat of chats | async">
+    {{ chat.mensaje }}
+  </li>
+</ul>
+
+
+<input type="text" [(ngModel)]="mensaje" name="mensaje" (keyup.enter)="enviar()" class="form-control" Placeholder="mensaje" />
