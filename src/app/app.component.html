@@ -4,8 +4,15 @@
   <!-- <div class="chat-window">
     <app-chat></app-chat>
   </div> -->
+  <div class="col-md-12 text-right" *ngIf="_cs.usuario.uid">
+    <button (click)="_cs.logout()"
+    type="button" class="btn btn-outline-danger">
+      Salir
+    </button>
 
-  <app-login></app-login>
+  </div>
+
+  <app-login *ngIf="!_cs.usuario.uid"></app-login>
 </div>
 
 
