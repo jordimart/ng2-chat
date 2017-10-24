@@ -19,9 +19,9 @@ export class ChatService {
     public afAuth: AngularFireAuth
   ) {
 
-    this.afAuth.authState.subscribe( user =>{
-      console.log( 'Estado del usuario:', user);
-      if( !user ){
+    this.afAuth.authState.subscribe(user => {
+      console.log('Estado del usuario:', user);
+      if (!user) {
         return;
       }
 
@@ -30,13 +30,13 @@ export class ChatService {
     })
   }
 
-  login( proveedor: string ) {
+  login(proveedor: string) {
 
-    if( proveedor === 'google'){
-        this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    }else{
-        this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
-  }
+    if (proveedor === 'google') {
+      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    } else {
+      this.afAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
+    }
   }
   logout() {
     this.usuario = {};
@@ -55,18 +55,15 @@ export class ChatService {
         }
         return this.chats;
       })
-    // this.itemsCollection = this.af.collection<Mensaje>('/chats');
-    // console.log(this.itemsCollection.valueChanges())
-    // return this.chats = this.itemsCollection.valueChanges();
   }
 
   agregarMensaje(texto: string) {
 
-    //TODO falta el UID del usuario
     let mensaje: Mensaje = {
-      nombre: 'demo',
+      nombre: this.usuario.nombre,
       mensaje: texto,
       fecha: new Date().getTime(),
+      uid: this.usuario.uid
     }
 
     return this.itemsCollection.add(mensaje);
